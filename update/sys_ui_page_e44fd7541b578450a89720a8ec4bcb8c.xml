@@ -51,10 +51,6 @@
 			docapi.RenderInstallationInstructionsRunTestSuite('4a8550391b5b8850a89720a8ec4bcbd9');
 		]</g2:no_escape>		
 		
-		<!--
-		<li>Go to&#160;<a href="/system_properties_ui.do?sysparm_title=Instance%20Debug%20Options&amp;sysparm_category=devtools.instance.debug" target="_blank">Instance Debug Options</a>&#160;and activate the ATF test execution (if not set already).</li>
-		<li>Run the&#160;<a href="/sys_atf_test_suite.do?sys_id=4a8550391b5b8850a89720a8ec4bcbd9&amp;sysparm_view=DevTools&amp;sysparm_view_forced=true" target="_blank">DevTools Test Suite.</a></li>
--->		
 		<li>In case of errors:
 			<ol>
 				<li>If the test "DevTools - HttpRequest" fails this may indicate that the instance cannot establish an http connection to itself. This is be the case in some self-hosted environments and requires intervention by the teams responsible to configure the network around the instance.</li>
@@ -81,6 +77,30 @@ gs.info('After DeleteAllData(): '+x_snc_devtools.RenderValue(testdata.GetAllData
 	<p>DevTools contains a number of very helpful UI Actions. One of the most powerful features is the "Save" button with active scope switching capabilities. Never ever loose changes because of switching between scopes and browser tabs at the same time.</p>
 	<p>Please refer to the reference section for details.</p>
 	
+	<h3>Sending a Prompt to a Large Language Model (LLM)</h3>
+
+	<p>The function&#160;<a href="/sys_script_include.do?sys_id=8cece71583e91e5000d5ccc0deaad30e" target="_blank">Prompt()</a>&#160;can be used to send a prompt direct to a large language model, but it requires some setup:</p>
+	<ol>
+		<li>Navigate to&#160;<a href="/now/app-manager/home/" target="_blank">Plugins</a></li>
+		<li>Click button "Sync with Store"</li>
+		<li>Search for&#160;<a href="/now/app-manager/home/app/id/8178fec0ce0431105a7c9305875b2dca" target="_blank">Now Assist for Creator</a></li>
+		<li>Install "Now Assist for Creator"</li>
+		<!--<li>Navigate to&#160;<a href="/now/now-assist-admin/now-assist-panel" target="_blank">Now Assist Admin / Settings / Now Assist panel</a></li>-->
+		<!--<li>"Turn on" the Now Assist panel.</li>-->
+		<!--<li>Assign the "now.assist.creator" to users.</li>-->
+		<li>Navigate to the&#160;<a href="/nav_to.do?uri=sys_one_extend_capability.do?sys_id=0c90ca79533121106b38ddeeff7b12d7" target="_blank">Generic Prompt Capability</a></li>
+		<li>Select the related list "OneExtend Definition Configs".</li>
+		<li>Set the preferred LLM as the default.</li>
+		<li>Open the OneExtend Capability Definition.</li>
+		<li>Open the Connection and Credential Alias.</li>
+		<li>Select "Create Connection and Credential" and add authentication credentials if not done already.</li>
+	</ol> 
+<!--
+
+Assign the role "now.assist.creator" to users
+Set a default config for the generic prompt capability: /nav_to.do?uri=sys_one_extend_capability.do?sys_id=0c90ca79533121106b38ddeeff7b12d7 
+-->
+
 	<h3>Cross Scope Scripting</h3>
 	<p>The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=cc44a1c91b4b7450edf3642aab4bcb13" target="_blank">RunScriptInScope()</a>&#160;allows to execute code in any scope no matter what the current execution scope is. The function&#160;<a href="/nav_to.do?uri=sys_script_include.do?sys_id=7303bde9db30a410ba15a35305961968" target="_blank">RunScriptInGlobalScope()</a>&#160;specifically allows code execution in the global scope from any other other scope. This allows the use of API functions and classes which are only available in the global scope and NOT in scoped scripts. This allows more flexibility when developing scoped apps - and effectively removes any barriers between apps. The authors of DevTools believe that this is a good thing. Application scopes are NOT a security boundary. Scoped APIs have just not been implemented completely - so using these techniques serves as a workaround for incomplete scoped API implementation. It also allows scoped apps to interact with each other which would otherwise be impossible. I also believe that deployments via update sets are a method of the past. Features should always be deployed as part of scoped (or global scoped) applications via source control or AppRepo. This however requires such apps to perform installation steps - like manipulations of OOTB records - which would not be possible from within their own scope. Hence cross scope scripting techniques finally enable fully automated deployment pipelines without the need of any manual interventions.</p>
 	<p>To enable cross scope scripting the system property&#160;<a href="/nav_to.do?uri=sys_properties.do?sys_id=9e52826587120300cf2d5fb736cb0b7f" target="_blank">glide.record.legacy_cross_scope_access_policy_in_script</a>&#160;must be set to true. As of the release of this DevTools version the only publicly accessible documentation of the system property's behaviour can be found in the knowledge base article&#160;<a href="https://support.servicenow.com/kb?id=kb_article_view&amp;sysparm_article=KB0779287" target="_blank">KB0779287</a>.</p>
@@ -318,6 +338,21 @@ function DevToolsGetFormatConfig(grRecord)
 <p>"your_table" is the technical name of the table in which records should be sorted (or ranked). "order" is the name of the integer field that defines the ordering sequence.</p>
 <p>The "current" object is null in an after delete async business rule, hence the conditional statements.</p>
 	
+	<h2>Further Guidance</h2>
+
+	<h3>How to unblock Instance Scan?</h3>
+	<p>On rare occasions an Instance Scan run does not finish properly and remains in an undefined state. This prevents further Instance Scan checks to run. Follow these instructions to unblock Instance Scan and to enable further scan operations:</p>
+	<ol>
+		<li>Navigate to the list of&#160;<a href="/now/nav/ui/classic/params/target/loading_transactions.do" target="_blank">active transactions</a>.</li>
+		<li>If there is a transaction of Type "instance_scan", select it and choose "Kill".</li>
+		<li>Navigate to the &#160;<a href="now/nav/ui/classic/params/target/scan_result_list.do" target="_blank">Scan Results list</a>.</li>
+		<li>Check if there is a Scan Result record in status "In Progress". Delete this Scan Result record.</li>
+		<li>Navigate to the &#160;<a href="now/nav/ui/classic/params/target/sys_progress_worker_list.do" target="_blank">Progress Workers list</a>.</li>
+		<li>Check if there is a Progress Worker record with name "Instance Scan" in state "Running". Delete this Progress Worker record.</li>		
+		<li>Navigate to the &#160;<a href="now/nav/ui/classic/params/target/sys_execution_tracker_list.do" target="_blank">Execution Trackers list</a>.</li>
+		<li>Check if there is an Execution Tracker record with name "Instance Scan" and completion time "empty". Delete this Execution Tracker record.</li>			
+	</ol>
+
 	<h2>Reference</h2>
 
 	<h3>Configuration Options</h3>
@@ -356,6 +391,23 @@ function DevToolsGetFormatConfig(grRecord)
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2>Release Notes</h2>
+
+	<h3>1.104.0 - 2024-11-02</h3>
+	<ol>
+		<li>Added function Prompt() to send a generic prompt to a large language model (LLM). Added the system property x_snc_devtools.prompt.capability to specify the capability to be used when invoking the internal API.</li>
+		<li>Added chapter in manual on "Sending a Prompt to a Large Language Model (LLM)".</li>
+		<li>Added function RunTest().</li>
+		<li>Added function RunTestSuite().</li>
+		<li>Added UI Action "Create Test" for Script Includes.</li>
+		<li>Added system property "x_snc_devtools.ui.createtest_button" to control if the "Create Test" button should be visible.</li>
+		<li>Added function CreateTestForRecord().</li>
+		<li>GetTestRecord() is now more strict and supports global Script Includes.</li>
+		<li>The "Background Scripts" menu item now points to the "modern" version and stays in the same tab.</li> 
+		<li>Fixed a defect in UI Script ServerRequest() that caused a client-side error if the request fails and no callback function is specified.</li>
+		<li>HtmlRenderWhatRuns() caused a deprecation warning when opening the "What Runs" page. this has been fixed.</li>
+		<li>Added chapter "How to unblock Instance Scan?" to the manual.</li>
+	</ol>
+
 
 	<h3>1.103.1 - 2024-10-23</h3>
 	<ol>
@@ -2123,13 +2175,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1786</sys_mod_count>
+        <sys_mod_count>1807</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-23 12:08:00</sys_updated_on>
+        <sys_updated_on>2024-11-02 09:42:52</sys_updated_on>
     </sys_ui_page>
 </record_update>

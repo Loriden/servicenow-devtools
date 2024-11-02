@@ -7,37 +7,37 @@
         <inputs/>
         <mugshots_cache_json/>
         <notes/>
-        <order>2</order>
+        <order>1</order>
         <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2024-07-31 15:24:28</sys_created_on>
-        <sys_id>7d31a6a4db3f4a90f0f1d03cd39619a9</sys_id>
+        <sys_created_on>2024-10-25 13:42:55</sys_created_on>
+        <sys_id>41b2c15483a9565000d5ccc0deaad34d</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
-        <sys_update_name>sys_atf_step_7d31a6a4db3f4a90f0f1d03cd39619a9</sys_update_name>
+        <sys_update_name>sys_atf_step_41b2c15483a9565000d5ccc0deaad34d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-31 15:24:28</sys_updated_on>
+        <sys_updated_on>2024-10-25 13:42:55</sys_updated_on>
         <table/>
-        <test display_value="DevTools - HttpRequest">08aee676dbc7d810ba15a353059619ba</test>
+        <test display_value="DevTools - DemoCode2">cdb2c15483a9565000d5ccc0deaad342</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
-    <sys_variable_value action="DELETE" query="document_key=7d31a6a4db3f4a90f0f1d03cd39619a9"/>
+    <sys_variable_value action="DELETE" query="document_key=41b2c15483a9565000d5ccc0deaad34d"/>
     <sys_variable_value action="DELETE">
         <document>sys_atf_step</document>
-        <document_key>7d31a6a4db3f4a90f0f1d03cd39619a9</document_key>
+        <document_key>41b2c15483a9565000d5ccc0deaad34d</document_key>
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2024-07-31 15:24:28</sys_created_on>
-        <sys_id>7131a6a4db3f4a90f0f1d03cd39619ac</sys_id>
+        <sys_created_on>2024-10-25 13:42:55</sys_created_on>
+        <sys_id>41b2c15483a9565000d5ccc0deaad34e</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-31 15:24:28</sys_updated_on>
+        <sys_updated_on>2024-10-25 13:42:55</sys_updated_on>
         <value>// You can use this step to execute a variety of server-side javascript tests including
 // jasmine tests and custom assertions
 //
@@ -132,15 +132,15 @@
     </sys_variable_value>
     <sys_variable_value action="DELETE">
         <document>sys_atf_step</document>
-        <document_key>7d31a6a4db3f4a90f0f1d03cd39619a9</document_key>
+        <document_key>41b2c15483a9565000d5ccc0deaad34d</document_key>
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2024-07-31 15:24:28</sys_created_on>
-        <sys_id>7931a6a4db3f4a90f0f1d03cd39619ab</sys_id>
+        <sys_created_on>2024-10-25 13:42:55</sys_created_on>
+        <sys_id>8db2c15483a9565000d5ccc0deaad34d</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-31 15:24:28</sys_updated_on>
+        <sys_updated_on>2024-10-25 13:42:55</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
@@ -148,10 +148,10 @@
         <action>DELETE</action>
         <application display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</application>
         <file_path/>
-        <instance_id>bbdfc83f1ba93910699443f4bd4bcbe7</instance_id>
-        <instance_name>wildvancouver</instance_name>
-        <name>sys_atf_step_7d31a6a4db3f4a90f0f1d03cd39619a9</name>
-        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step"><sys_atf_step action="INSERT_OR_UPDATE"><active>true</active><copied_from/><description>Run Server Side Validation Script</description><display_name>Run Server Side Script</display_name><inputs/><mugshots_cache_json/><notes/><order>2</order><step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config><sys_class_name>sys_atf_step</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-07-31 15:24:28</sys_created_on><sys_id>7d31a6a4db3f4a90f0f1d03cd39619a9</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Run Server Side Script</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_step_7d31a6a4db3f4a90f0f1d03cd39619a9</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-07-31 15:24:28</sys_updated_on><table/><test display_value="DevTools - HttpRequest">08aee676dbc7d810ba15a353059619ba</test><timeout/><warning_message/></sys_atf_step><sys_variable_value action="delete_multiple" query="document_key=7d31a6a4db3f4a90f0f1d03cd39619a9"/><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>7d31a6a4db3f4a90f0f1d03cd39619a9</document_key><order>200</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-07-31 15:24:28</sys_created_on><sys_id>7131a6a4db3f4a90f0f1d03cd39619ac</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-07-31 15:24:28</sys_updated_on><value>// You can use this step to execute a variety of server-side javascript tests including
+        <instance_id>00dfd44b1b640a14a43dcb7b234bcbf2</instance_id>
+        <instance_name>wildwashington</instance_name>
+        <name>sys_atf_step_41b2c15483a9565000d5ccc0deaad34d</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step"><sys_atf_step action="INSERT_OR_UPDATE"><active>true</active><copied_from/><description>Run Server Side Validation Script</description><display_name>Run Server Side Script</display_name><inputs/><mugshots_cache_json/><notes/><order>1</order><step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config><sys_class_name>sys_atf_step</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-10-25 13:42:55</sys_created_on><sys_id>41b2c15483a9565000d5ccc0deaad34d</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Run Server Side Script</sys_name><sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package><sys_policy/><sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope><sys_update_name>sys_atf_step_41b2c15483a9565000d5ccc0deaad34d</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-10-25 13:42:55</sys_updated_on><table/><test display_value="DevTools - DemoCode2">cdb2c15483a9565000d5ccc0deaad342</test><timeout/><warning_message/></sys_atf_step><sys_variable_value action="delete_multiple" query="document_key=41b2c15483a9565000d5ccc0deaad34d"/><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>41b2c15483a9565000d5ccc0deaad34d</document_key><order>200</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-10-25 13:42:55</sys_created_on><sys_id>41b2c15483a9565000d5ccc0deaad34e</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-10-25 13:42:55</sys_updated_on><value>// You can use this step to execute a variety of server-side javascript tests including
 // jasmine tests and custom assertions
 //
 //
@@ -240,32 +240,32 @@
 })(outputs, steps, params, stepResult, assertEqual);
 // uncomment the next line to execute this script as a jasmine test
 //jasmine.getEnv().execute();
-</value><variable display_value="Test script">989d9e235324220002c6435723dc3484</variable></sys_variable_value><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>7d31a6a4db3f4a90f0f1d03cd39619a9</document_key><order>100</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-07-31 15:24:28</sys_created_on><sys_id>7931a6a4db3f4a90f0f1d03cd39619ab</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-07-31 15:24:28</sys_updated_on><value>3.1</value><variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable></sys_variable_value></record_update>]]></payload>
-        <payload_hash>1950447554</payload_hash>
+</value><variable display_value="Test script">989d9e235324220002c6435723dc3484</variable></sys_variable_value><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>41b2c15483a9565000d5ccc0deaad34d</document_key><order>100</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-10-25 13:42:55</sys_created_on><sys_id>8db2c15483a9565000d5ccc0deaad34d</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-10-25 13:42:55</sys_updated_on><value>3.1</value><variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable></sys_variable_value></record_update>]]></payload>
+        <payload_hash>2003894062</payload_hash>
         <record_name>Run Server Side Script</record_name>
         <reverted_from/>
-        <source>bcc493fbdbcb0610f0f1d03cd39619f1</source>
+        <source>979320b5c32816105a37f90705013175</source>
         <source_table>sys_update_set</source_table>
         <state>previous</state>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2024-07-31 15:24:28</sys_created_on>
-        <sys_id>8a31a6a4db3f4a90f0f1d03cd39619ae</sys_id>
+        <sys_created_on>2024-10-25 13:42:55</sys_created_on>
+        <sys_id>05b2c15483a9565000d5ccc0deaad350</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_recorded_at>1910964865f0000001</sys_recorded_at>
+        <sys_recorded_at>192c3ea768d0000001</sys_recorded_at>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-31 15:24:28</sys_updated_on>
+        <sys_updated_on>2024-10-25 13:42:55</sys_updated_on>
         <type>Test Step</type>
-        <update_guid>bd31a6a4af3f4a9053b6a21748012cad</update_guid>
-        <update_guid_history>bd31a6a4af3f4a9053b6a21748012cad:1950447554</update_guid_history>
+        <update_guid>09b2c15453a956501da973be2937884f</update_guid>
+        <update_guid_history>09b2c15453a956501da973be2937884f:2003894062</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
         <sys_audit_delete/>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2024-07-31 15:31:35</sys_created_on>
+        <sys_created_on>2024-10-25 13:43:57</sys_created_on>
         <sys_db_object display_value="" name="sys_atf_step">sys_atf_step</sys_db_object>
-        <sys_id>b1a920457c704b8a940e5026ffec8011</sys_id>
-        <sys_metadata>7d31a6a4db3f4a90f0f1d03cd39619a9</sys_metadata>
+        <sys_id>48905affad6941129877e8515dfc0424</sys_id>
+        <sys_metadata>41b2c15483a9565000d5ccc0deaad34d</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
@@ -273,9 +273,9 @@
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_scope_delete display_value="">00add56a207e4bf3800cdb72bd156af9</sys_scope_delete>
-        <sys_update_name>sys_atf_step_7d31a6a4db3f4a90f0f1d03cd39619a9</sys_update_name>
-        <sys_update_version display_value="sys_atf_step_7d31a6a4db3f4a90f0f1d03cd39619a9">8a31a6a4db3f4a90f0f1d03cd39619ae</sys_update_version>
+        <sys_update_name>sys_atf_step_41b2c15483a9565000d5ccc0deaad34d</sys_update_name>
+        <sys_update_version display_value="sys_atf_step_41b2c15483a9565000d5ccc0deaad34d">05b2c15483a9565000d5ccc0deaad350</sys_update_version>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-31 15:31:35</sys_updated_on>
+        <sys_updated_on>2024-10-25 13:43:57</sys_updated_on>
     </sys_metadata_delete>
 </record_update>
