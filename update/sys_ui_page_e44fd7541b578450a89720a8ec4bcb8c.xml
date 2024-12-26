@@ -21,6 +21,8 @@
 		docapi.RenderDescription();  
 	]</g2:no_escape>	
 
+	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contribution to the AzureDevOpsAPI class.</p>
+
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
 	
@@ -392,6 +394,22 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.109.0 - 2024-12-26</h3>
+	<ol>
+		<li>Added special thanks to Kevin Janssen for his contribution to the AzureDevOpsAPI class to the manual.</li>
+		<li>Added function AppCreate().</li>
+		<li>Added UI Script SourceControlCommit().</li>
+		<li>Business rule "sys_metadata - set scope to record scope" now sets the scope properly for new records where the scope of the new record is defined by an url parameter.</li> 
+		<li>DevToolsWorkerAPI now supports SourceControlCommitToCurrentBranch().</li>
+		<li>GetAppUncommittedFiles() now returns files sorted by sys_name.</li>
+		<li>MakeJson() now handles potential exceptions thrown by JSON.stringify().</li>
+		<li>UI Script GetElementById() can now also be used on UI pages (where no g_form object is available).</li>
+		<li>GetParentRecord() and the "Up" button now support ais_child_table, ais_datasource_attribute, ais_search_source and ais_datasource_field_attribute.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+		<li>InstanceReset() now hides the menu "Process Mining".</li>
+	</ol>
+
+
 	<h3>1.108.0 - 2024-12-13</h3>
 	<ol>
 		<li>Added class AzureDevOpsAPI to interface with the Azure DevOps API for source control operations.</li>
@@ -399,8 +417,8 @@ function DevToolsGetFormatConfig(grRecord)
 		<li>Added UI Script SetCurrentBrowserUrl().</li>
 		<li>Added UI Script StringReplace().</li>
 		<li>GetParentRecord() no longer considers the sys_scope record associated with a sys_metadata record (or derived record) if there is no explicit meaningful parent record.</li>
-		<li>GetParentRecord() and the "Up" button now support the "catalog_script_client" table.</li>
-		<li>GetParentRecord() and the "Up" button now supports "item_option_new" records that refer to variable sets.</li>
+		<li>GetParentRecord() and the "Up" button now supports catalog_script_client.</li>
+		<li>GetParentRecord() and the "Up" button now supports item_option_new records that refer to variable sets.</li>
 		<li>RecordTransporterRecordPack() now prevents packing label ("Tag") and related records. Tags are a personalization feature and should hence never be part of an application deployment.</li> 
 		<li>Replaced menu link to "Flow Designer" to "Workflow Studio".</li> 
 		<li>Added menu link to "Access  Analyzer".</li>
@@ -2242,13 +2260,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1866</sys_mod_count>
+        <sys_mod_count>1879</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-13 12:24:17</sys_updated_on>
+        <sys_updated_on>2024-12-26 09:21:04</sys_updated_on>
     </sys_ui_page>
 </record_update>
