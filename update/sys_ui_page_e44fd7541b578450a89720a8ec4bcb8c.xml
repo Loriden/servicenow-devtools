@@ -394,6 +394,26 @@ function DevToolsGetFormatConfig(grRecord)
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.110.0 - 2025-01-03</h3>
+	<ol>
+		<li>Added function MakeTestNameForRecord() and refactored GetTestRecord() and CreateTestForRecord() to use it.</li>
+		<li>Added function GetRecordsFromUpdateXml() and refactored GetAppUncommittedFiles() to use it.</li>
+		<li>Added function GetDependencyRecord() - using the ArtificalDeveloper.</li>
+		<li>Added function GetRepoConfigRecord() - using the ArtificalDeveloper.</li>
+		<li>Added function AppSyncAllDependencies() and refactored business rule "sys_app - sync dependencies" to use it.</li>
+		<li>GetRecordsFromUpdateXml() and GetAppUncommittedFiles() now also support sys_choice, sys_dictionary and sys_documentation records.</li>
+		<li>AzureDevOpsAPI::GetFilesFromRepo() is now processing the response properly and returns an array of file paths.</li>
+		<li>AzureDevOpsAPI::GetFile() is now processing the response in a way that allows proper error handling.</li>
+		<li>ConfigurationItemServiceNowAppInsertOrUpdate() now handles new versions in new branches properly and creates a new CI for each separate version that is available in a repository.</li>
+		<li>GetParentRecord() and the "Up" UI Action now support the x_snc_devtools_dependency table.</li>
+		<li>Refactored Business Rule "x_snc_devtools_dependency - duplicates" to use GetDependencyRecord() and to avoid new CodeSanity finding against the use of GlideRecord outside Script Includes.</li>
+		<li>Refactored Business Rule "sys_app - set repo url" to use GetRepoConfigRecord() and to avoid new CodeSanity finding against the use of GlideRecord outside Script Includes.</li>
+		<li>Refactored UI Action "Show Table Dictionary Record" to use GetDictionaryRecord() and to avoid new CodeSanity finding against the use of GlideRecord outside Script Includes.</li>
+		<li>Improved GetDictionaryRecord() and associated ATF test.</li>
+		<li>Added more patterns to GetEvaluatorErrorExceptionPatterns().</li>
+	</ol>
+
+
 	<h3>1.109.0 - 2024-12-26</h3>
 	<ol>
 		<li>Added special thanks to Kevin Janssen for his contribution to the AzureDevOpsAPI class to the manual.</li>
@@ -2260,13 +2280,13 @@ gs.invalidateCache();
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-02-27 11:17:42</sys_created_on>
         <sys_id>e44fd7541b578450a89720a8ec4bcb8c</sys_id>
-        <sys_mod_count>1879</sys_mod_count>
+        <sys_mod_count>1896</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_ui_page_e44fd7541b578450a89720a8ec4bcb8c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-26 09:21:04</sys_updated_on>
+        <sys_updated_on>2025-01-03 09:31:40</sys_updated_on>
     </sys_ui_page>
 </record_update>
