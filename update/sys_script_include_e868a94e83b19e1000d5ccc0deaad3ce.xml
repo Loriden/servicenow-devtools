@@ -26,7 +26,9 @@ Methods:
 * GetFilesFromBranch()
 * GetFile()
 * ProtectBranchReadOnly()</description>
+        <mobile_callable>false</mobile_callable>
         <name>AzureDevOpsAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var AzureDevOpsAPI = Class.create();
 AzureDevOpsAPI.prototype = {
 	initialize: function(strApiUrl)
@@ -98,7 +100,8 @@ AzureDevOpsAPI.prototype = {
 	Request: function(vInput)
 	{
 		var strPath = '';
-		var strResponse = 'RESTResponseV2';
+		var strFormat = GetStringValue(GetValue(vInput, 'format'));
+
 		if (IsObject(vInput) == false)
 		{
 			strPath = GetStringValue(vInput);
@@ -110,10 +113,6 @@ AzureDevOpsAPI.prototype = {
 			{
 				Error('Request: No path specified!');
 				return false;
-			}
-			if (GetStringValue(GetValue(vInput, 'response')) == 'plain')
-			{
-				strResponse = 'plain';
 			}
 		}
 		this.m_nRequestCount++;
@@ -162,31 +161,33 @@ AzureDevOpsAPI.prototype = {
 			}
 		];
 		
-		params.response = strResponse;
+		params.response = 'RESTResponseV2';
 		
 		var response = HttpRequest(params);
-		if (strResponse == 'RESTResponseV2')
+
+		if (response == false)
 		{
-			var strBody = GetStringValue(response.getBody());
-			if (response.getStatusCode() >= 200 && response.getStatusCode() < 300)
-			{
-				
-				return ParseJson(strBody);
-			}
-			else
-			{
-				this.Error(
-					'AzurDevOps API failed with status: '+response.statusCode+'\n\n'
-					+'Url: '+strUrl+'\n\n'
-					+'Response Body:\n'+strBody);
-				return false;
-			}
+			this.Error(
+				'AzurDevOps API: HttpRequest failed:\n'
+				+'Params:\n\n'
+				+RenderValue(params));
+			return false;	
 		}
-		else
+	
+		var strBody = GetStringValue(response.getBody());
+		if (response.getStatusCode() >= 200 && response.getStatusCode() < 300)
 		{
-			return response;
+			if (strFormat == 'raw')
+			{
+				return strBody;
+			}
+			return ParseJson(strBody);
 		}
-		
+		this.Error(
+			'AzurDevOps API failed with status: '+response.statusCode+'\n\n'
+			+'Url: '+strUrl+'\n\n'
+			+'Response Body:\n'+strBody);
+		return false;
 	},
 
 	GetOrganizationPath: function(strOrganization)
@@ -216,7 +217,7 @@ AzureDevOpsAPI.prototype = {
 	{
 		var strUri = this.GetOrganizationPath(strOrganization) + '/_apis/projects';
 		var response = this.Request({ path: strUri });
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetPublicProjects: Request failed.');
 			return false;
@@ -228,7 +229,7 @@ AzureDevOpsAPI.prototype = {
 	{
 		var strUri = this.GetApiPath(strOrganization, strProject) + 'git/repositories';
 		var response = this.Request({ path: strUri });
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetReposFromProject: Request failed.');
 			return false;
@@ -242,7 +243,7 @@ AzureDevOpsAPI.prototype = {
 		var strUri = this.GetApiPath(strOrganization, strProject);
 		strUri += 'git/repositories/' + encodeURIComponent(strRepo) + '/refs?filter=heads/';
 		var response = this.Request({ path: strUri });
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetBranchesFromRepo: Request failed.');
 			return false;
@@ -275,27 +276,26 @@ AzureDevOpsAPI.prototype = {
 			requestbody: MakeJson(requestBody)
 		});
 
-		if (!response)
+		if (response == false)
 		{
 			this.Error('GetFilesFromBranch: Request failed.');
 			return false;
 		}
-
-		var aShell = GetArrayValue(response);
-		var aItems = GetArrayValue(GetValue(aShell,0));
+		var aFiles = [];
+		var aItems = GetArrayValue(GetValue(response,'value',0));
 		if (aItems.length > 0)
 		{
 			for (var nItem = 0; nItem < aItems.length; nItem++)
 			{
 				var item = aItems[nItem];
-				var strType = GetValue(item,'type');
+				var strType = GetValue(item,'gitObjectType');
 				if (strType == 'blob')
 				{
 					aFiles.push(GetValue(item,'path'));
 				}
 			}
 		}
-		return aItems;
+		return aFiles;
 	},
 
 
@@ -306,10 +306,8 @@ AzureDevOpsAPI.prototype = {
 		strUri += '/items?versionType=branch&version=' + encodeURIComponent(strBranch);
 		strUri += '&scopePath=' + encodeURIComponent(strFilePath) + '&includeContent=true';
 
-		var response = this.Request({ path: strUri,  response: 'plain' });
-
-		gs.info(strUri);
-		if (!response)
+		var response = this.Request({ path: strUri,  format: 'raw' });
+		if (response == false)
 		{
 			this.Error('GetFile: Request failed.');
 			return false;
@@ -320,7 +318,6 @@ AzureDevOpsAPI.prototype = {
 
 	ProtectBranchReadOnly: function(strOrganization, strProject, strRepoId, strBranch)
 	{
-
 		//https://url.us.m.mimecastprotect.com/s/G3kFCo2gZJtDP3oEXunFDIpSDfF?domain=learn.microsoft.com
 
 		var strUri = this.GetApiPath(strOrganization, strProject);
@@ -331,6 +328,12 @@ AzureDevOpsAPI.prototype = {
 			"isLocked": true
 		};
 
+		var params = {
+				path: strUri,
+				method: 'PATCH',
+				requestbody: MakeJson(body)
+			};
+
 		var response = this.Request(
 			{
 				path: strUri,
@@ -338,7 +341,7 @@ AzureDevOpsAPI.prototype = {
 				requestbody: MakeJson(body)
 			});
 
-		if (!response)
+		if (response == false)
 		{
 			this.Error('ProtectBranchReadOnly: Failed to lock the branch.');
 			return false;
@@ -352,13 +355,13 @@ AzureDevOpsAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-11-12 13:12:37</sys_created_on>
         <sys_id>e868a94e83b19e1000d5ccc0deaad3ce</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_name>AzureDevOpsAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_e868a94e83b19e1000d5ccc0deaad3ce</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-27 11:43:21</sys_updated_on>
+        <sys_updated_on>2025-01-27 12:03:47</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -49,7 +49,9 @@ Methods:&#13;
 * DefineFormSection()&#13;
 * DefineList()&#13;
 * RecordTransporterPackageUnpack()</description>
+        <mobile_callable>false</mobile_callable>
         <name>InstallerAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var InstallerAPI = Class.create();
 InstallerAPI.prototype =
 {
@@ -117,13 +119,14 @@ InstallerAPI.prototype =
 		{
 			CacheFlushMenu();
 			this.Log(this.m_strContext+'Installation COMPLETED');
+			Log(this.m_strLog);
 		}
 		else
 		{
 			bResult = false;
-			this.Log(this.m_strContext+'Installation FAILED')
+			this.Log(this.m_strContext+'Installation FAILED');
+			LogError(this.m_strLog);
 		}
-		x_snc_devtools.Log(this.m_strLog);
 		return bResult;
 	},
 	
@@ -469,7 +472,43 @@ InstallerAPI.prototype =
 			});		
 		
 	},
-	
+
+	SetTableValue: function(strTable,strField,vValue)
+	{
+		if (this.IsAborting() == true)
+		{
+			return false;
+		}
+		
+		strTable = GetStringValue(strTable);
+		strField = GetStringValue(strField);
+				
+		var grTable = GetTableRecord(strTable);
+		if (IsValidRecord(grTable) == false)
+		{
+			this.Error('Table "'+strTable+'" could not be found!');			
+		}
+
+		if (IsValidColumn('sys_db_object',strField) == false)
+		{
+			this.Error('Table sys_db_object does not contain field "'+strField+'"!');	
+		}
+
+		GlideRecordSetValue(grTable,strField,vValue);
+		var bResult = IsValidSysId(GlideRecordUpdate(grTable,true));
+
+		if (bResult == true)
+		{
+			this.Log('Table field "'+strField+'" of table "'+strTable+'" is set to "'+vValue+'".');
+		}
+		else
+		{
+			this.Error('Table field "'+strField+'" of table "'+strTable+'" is NOT set to "'+vValue+'"!');
+		}
+		return bResult;
+	},
+
+
 	SetTableAttribute: function(strTable,strAttributeName,strAttributeValue)
 	{
 		if (this.IsAborting() == true)
@@ -1070,6 +1109,9 @@ InstallerAPI.prototype =
 		var grUiList = new GlideRecord('sys_ui_list');
 		grUiList.addQuery('name','=',strTable);
 		grUiList.addQuery('view','=',grUiView.sys_id);
+		grUiList.addNullQuery('sys_user');
+		grUiList.addNullQuery('relationship');
+		grUiList.addNullQuery('parent');
 		grUiList.query();
 		if (grUiList.next() == false)
 		{
@@ -1192,13 +1234,24 @@ InstallerAPI.prototype =
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-27 10:49:10</sys_created_on>
         <sys_id>704694a81b1a74505331b8449b4bcb69</sys_id>
-        <sys_mod_count>163</sys_mod_count>
+        <sys_mod_count>174</sys_mod_count>
         <sys_name>InstallerAPI</sys_name>
         <sys_package display_value="DevTools" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
         <sys_policy/>
         <sys_scope display_value="DevTools">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
         <sys_update_name>sys_script_include_704694a81b1a74505331b8449b4bcb69</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-13 15:39:52</sys_updated_on>
+        <sys_updated_on>2025-05-15 09:48:54</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>704694a81b1a74505331b8449b4bcb69</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-02-28 12:00:04</sys_created_on>
+        <sys_id>fe7365309388a610ae97b4aa6aba10b9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-02-28 12:00:04</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>
